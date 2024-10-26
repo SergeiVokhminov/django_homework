@@ -1,6 +1,7 @@
 # Импорт встроенной библиотеки для работы веб-сервера
-from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from config import PATH_TO_FILE
 
 # Для начала определим настройки запуска
