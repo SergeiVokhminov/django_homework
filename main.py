@@ -1,6 +1,5 @@
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
 import os
 from config import PATH_TO_FILE
 
@@ -11,15 +10,18 @@ serverPort = 8080  # Порт для доступа по сети
 
 class MyServer(BaseHTTPRequestHandler):
     """
-        Специальный класс, который отвечает за
-        обработку входящих запросов от клиентов
+    Специальный класс, который отвечает за
+    обработку входящих запросов от клиентов
     """
+
     def do_GET(self):
-        """ Метод для обработки входящих GET-запросов """
+        """Метод для обработки входящих GET-запросов"""
         with open(os.path.join(PATH_TO_FILE), mode="r", encoding="utf-8") as file:
             data = file.read()
         self.send_response(200)  # Отправка кода ответа
-        self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
+        self.send_header(
+            "Content-type", "text/html"
+        )  # Отправка типа данных, который будет передаваться
         self.end_headers()  # Завершение формирования заголовков ответа
         self.wfile.write(bytes(data, "utf-8"))  # Тело ответа
 
